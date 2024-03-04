@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=Animal-Prediction-Game/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.animal.Service{PlanService.java[PlanService" modifiers="513" timestamp="1702279171553"/>
+    <typeInfo handle="=Animal-Prediction-Game/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.animal.Service{RegisterService.java[RegisterService" modifiers="513" timestamp="1706771820714"/>
+    <typeInfo handle="=Animal-Prediction-Game/C:\/Users\/HP\/.m2\/repository\/org\/mockito\/mockito-core\/5.7.0\/mockito-core-5.7.0.jar=/maven.pomderived=/true=/=/test=/true=/=/maven.groupId=/org.mockito=/=/maven.artifactId=/mockito-core=/=/maven.version=/5.7.0=/=/maven.scope=/test=/=/maven.pomderived=/true=/&lt;org.mockito.internal.verification(RegisteredInvocations.class[RegisteredInvocations" modifiers="1537" timestamp="1701153649867"/>
+    <typeInfo handle="=Animal-Prediction-Game/C:\/Users\/HP\/.m2\/repository\/org\/springframework\/data\/spring-data-jpa\/3.2.0\/spring-data-jpa-3.2.0.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.data=/=/maven.artifactId=/spring-data-jpa=/=/maven.version=/3.2.0=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1701153641500"/>
+</typeInfoHistroy>

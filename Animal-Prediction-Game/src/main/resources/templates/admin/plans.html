@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/admin-comman/admincommanpage :: head">
+	<meta charset="UTF-8">
+</head>
+
+<body onload="getAllPlans();">
+
+	<aside th:replace="admin/admin-comman/admincommanpage :: side">
+	</aside>
+	<nav th:replace="admin/admin-comman/admincommanpage :: upside">
+	</nav>
+<div style="margin-left: 270px;">
+		<button type="button" data-toggle="modal" data-target="#addmodal" class="btn btn-success">Add Plans</button>
+	</div>
+	<div style="margin-left: 270px;">
+		<table class="table table-borderless" id="plantable">
+			<thead>
+				<tr>
+					<th scope="col">Plan No</th>
+					<th scope="col">Plan Name</th>
+					<th scope="col">Amount</th>
+					<th scope="col">Points</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+
+
+			</tbody>
+		</table>
+	</div>
+	
+	
+	<!-- Add Plans modal start here   -->
+	<div class="modal fade" id="addmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+		data-backdrop="false">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<h5 class="modal-title" id="exampleModalLabel">Add Plans</h5>
+
+					<button type="button" onclick="clearForm();" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							
+							
+
+							<label for="recipient-name" class="col-form-label">Plan No</label>
+							<input type="text" class="form-control" id="add-planno" name="planno" pattern="[0-9]+"
+								title="Please enter only numbers"  required>
+							<label id="imgno" style="color: blue;"></label>
+						</div>
+						
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">Plan Name</label>
+							<input type="text" class="form-control" id="add-planname" name="planname"
+								pattern="[A-Za-z\s]+" title="Please enter a valid name"  required>
+								<label id="imgname" style="color: blue;"></label>
+
+						</div>
+						<div class="form-group">
+							
+							
+
+							<label for="recipient-name" class="col-form-label">Amount</label>
+							<input type="text" class="form-control" id="add-amount" name="amount" pattern="[0-9]+"
+								title="Please enter only numbers" required>
+							<label id="imgno" style="color: blue;"></label>
+						</div>
+	
+						<div class="form-group">
+							
+							
+
+							<label for="recipient-name" class="col-form-label">Points</label>
+							<input type="text" class="form-control" id="add-points" name="points" pattern="[0-9]+"
+								title="Please enter only numbers" required>
+							<label id="imgno" style="color: blue;"></label>
+						</div>
+	
+						<div class="modal-footer">
+							<button type="button" onclick="clearForm();" class="btn btn-secondary" data-dismiss="modal"
+								id="add-cancel" >Cancel</button>
+							<button type="button" class="btn btn-success" id="add-btn" onclick="saveplans();">Add Plan</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- update plans modal end here   -->
+
+
+
+	<!-- Add Plans modal start here   -->
+	<div class="modal fade" id="upmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+		data-backdrop="false">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<h5 class="modal-title" id="exampleModalLabel">Update Plans</h5>
+
+					<button type="button" onclick="clearForms();" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							
+							
+
+							<label for="recipient-name" class="col-form-label">Plan No</label>
+							<input type="text" class="form-control" id="update-planno" name="planno" pattern="[0-9]+"
+								title="Please enter only numbers"  required>
+								<input type="hidden" class="form-control" id="update-planid" name="id">
+							
+						</div>
+						
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">Plan Name</label>
+							<input type="text" class="form-control" id="update-planname" name="planname"
+								pattern="[A-Za-z\s]+" title="Please enter a valid name"  required>
+								
+
+						</div>
+						<div class="form-group">
+							
+							
+
+							<label for="recipient-name" class="col-form-label">Amount</label>
+							<input type="text" class="form-control" id="update-amount" name="amount" pattern="[0-9]+"
+								title="Please enter only numbers" required>
+							
+						</div>
+	
+						<div class="form-group">
+							
+							
+
+							<label for="recipient-name" class="col-form-label">Points</label>
+							<input type="text" class="form-control" id="update-points" name="points" pattern="[0-9]+"
+								title="Please enter only numbers" required>
+							<label id="imgno" style="color: blue;"></label>
+						</div>
+	
+						<div class="modal-footer">
+							<button type="button" onclick="clearForms();" class="btn btn-secondary" data-dismiss="modal"
+								id="add-cancel" >Cancel</button>
+							<button type="button" class="btn btn-success" id="add-btn" onclick="updateplans();">Update Plan</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- update plans modal end here   -->
+
+	
+	
+	
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+		integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+		crossorigin="anonymous"></script>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+<script>
+
+function saveplans() {
+    // Get form data
+    var formData = {
+        planno: $('#add-planno').val(),
+        planname: $('#add-planname').val(),
+        amount: $('#add-amount').val(),
+        points: $('#add-points').val()
+    };
+
+    // Make AJAX call
+    $.ajax({
+        type: 'POST',
+        url: 'saveplans',  // Replace with your actual endpoint
+        contentType: 'application/json',
+        data: JSON.stringify(formData),
+        success: function(response) {
+            
+                      $('#addmodal').hide();
+           alert('new plans added successfully...!!!');
+
+            getAllPlans();
+
+          
+        },
+        error: function(error) {
+            // Handle error
+            console.error('Error adding plan:', error);
+        }
+    });
+}
+
+
+function getAllPlans() {
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: "/getallplans",
+				dataType: 'json',
+				//cache: false,
+
+				success: function (data) {
+
+					var table = '';
+
+					for (var i = 0; i < data.length; i++) {
+						table += '<tr>';
+						table += '<td>'
+							+ data[i].planno +
+							'</td>';
+						table += '<td>'
+							+ data[i].planname
+							+ '</td>';
+						table += '<td>'
+							+ data[i].amount
+							+ '</td>';
+							table += '<td>'
+							+ data[i].points
+							+ '</td>';
+						table += '<td>'
+							+ '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#upmodal" onclick="getPlanById(' + data[i].id + '); ">Update</button>'
+							+ '&nbsp &nbsp &nbsp'
+							+ '<button type="button" class="btn btn-danger" onclick="deletePlansById(' + data[i].id + ');">Delete</button>'
+							+ '</td>'
+							+ '</tr>';
+					}
+					$('#plantable tbody').html(table);
+
+				},
+
+				error: function (e) {
+					alert('Error While Fetching Student');
+				}
+			});
+		}
+
+
+function deletePlansById(id) {
+
+			if (window.confirm("Are you sure you want to delete this item?")) {
+				$.ajax({
+					type: "DELETE",
+					contentType: "application/json",
+					url: "deleteplan/" + id,
+					//	dataType: 'json',
+					//cache: false,
+
+
+
+					success: function () {
+
+						alert('deleted Successfully')
+						getAllPlans();
+					},
+
+					error: function (e) {
+
+
+						alert('Error While Deleting Plans')
+
+
+
+					}
+
+
+
+
+				});
+			}
+			else {
+				alert("Deletion canceled.");
+
+			}
+		}
+
+
+
+
+function getPlanById(id) {
+			// Assuming you have an input field in the modal to store the image ID
+			//$('#update-planid').val(id);
+
+			// Make an AJAX request to get image details by ID
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: "/getplanbyid/" + id, // Replace with your actual endpoint
+				dataType: 'json',
+				success: function (data) {
+					// Populate the form fields with the retrieved data
+					$('#update-planid').val(data.id);
+					$('#update-planno').val(data.planno);
+					$('#update-planname').val(data.planname);
+					$('#update-amount').val(data.amount);
+					$('#update-points').val(data.points);
+				
+
+					// Note: Image field may not be editable, consider displaying it as an image or provide an option to upload a new image if needed
+				},
+				error: function (e) {
+					alert('Error while fetching image details');
+				}
+			});
+		}
+
+
+
+function updateplans() {
+    // Get form data
+    var formData = {
+		id: $('#update-planid').val(),
+        planno: $('#update-planno').val(),
+        planname: $('#update-planname').val(),
+        amount: $('#update-amount').val(),
+        points: $('#update-points').val()
+    };
+
+    // Make AJAX call
+    $.ajax({
+        type: 'POST',
+        url: 'saveplans',  // Replace with your actual endpoint
+        contentType: 'application/json',
+        data: JSON.stringify(formData),
+        success: function(response) {
+            
+                      $('#upmodal').hide();
+                      getAllPlans();
+           alert('plans updated successfully...!!!');
+		
+            
+
+          
+        },
+        error: function(error) {
+            // Handle error
+            console.error('Error adding plan:', error);
+        }
+    });
+}
+
+
+function clearForm() {
+
+			$('#add-planno').val('');
+			$('#add-planname').val('');
+
+			$('#add-amount').val('');
+			$('#add-points').val('');
+			
+		}
+
+function clearForms() {
+			$('#update-planid').val('');
+			$('#update-planno').val('');
+			$('#update-planname').val('');
+			
+			$('#update-planamount').val('');
+			$('#update-planpoints').val('');
+			
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/admin-comman/admincommanpage :: head">
+	<meta charset="UTF-8">
+	<style>
+    tr th {
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body onload="getAllImages();">
+
+	<aside th:replace="admin/admin-comman/admincommanpage :: side">
+	</aside>
+	<nav th:replace="admin/admin-comman/admincommanpage :: upside">
+	</nav>
+
+	<div style="margin-left: 270px;">
+		<button type="button" data-toggle="modal" data-target="#addmodal" class="btn btn-success">Add Images</button>
+	</div>
+	<div style="margin-left: 270px;">
+		<table class="table table-borderless" id="imagetable">
+			<thead>
+			
+    <tr>
+        <th>Image No</th>
+        <th>Image Name</th>
+        <th>Image</th>
+        <th>Actions</th>
+    </tr>
+    
+
+			</thead>
+			<tbody>
+
+
+			</tbody>
+		</table>
+	</div>
+	<!-- Add Image modal start here   -->
+	<div class="modal fade" id="addmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+		data-backdrop="false">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<h5 class="modal-title" id="exampleModalLabel">Add Images</h5>
+
+					<button type="button" onclick="clearForm();" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form th:action="@{/insert}" method="post" enctype="multipart/form-data" id="add-modal-form">
+						<div class="form-group">
+
+
+
+							<label for="recipient-name" class="col-form-label">Image No</label>
+							<input type="text" class="form-control" id="add-imageno" name="imageno" pattern="[0-9]+"
+								title="Please enter only numbers" onchange="checkno(this.value)" required>
+							<label id="imgno" style="color: blue;"></label>
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">Image Name</label>
+							<input type="text" class="form-control" id="add-imagename" name="imagename"
+								pattern="[A-Za-z\s]+" title="Please enter a valid name" onchange="checkname(this.value)"
+								required>
+							<label id="imgname" style="color: blue;"></label>
+
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">Image</label>
+							<input type="file" class="form-control" id="add-image" name="file" accept="image/*" required
+								onchange="addpreviewImage(this)">
+							<img id="preview" alt="Image Preview"
+								style="max-width: 100px; max-height: 100px; display: none;">
+
+
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" onclick="clearForm();" class="btn btn-secondary" data-dismiss="modal"
+								id="add-cancel">Cancel</button>
+							<button type="submit" class="btn btn-success" id="add-btn">Add Image</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Add Image modal end here   -->
+
+
+
+	<!-- Update Image modal start here   -->
+	<div class="modal fade" id="upmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+		data-backdrop="false">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<h5 class="modal-title" id="exampleModalLabel">Update Images</h5>
+
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form th:action="@{/update}" method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">Image No</label>
+							<input type="text" class="form-control" id="update-imageno" name="imageno" pattern="[0-9]+"
+								title="Please enter only numbers" required>
+							<input type="hidden" class="form-control" id="update-image-id" name="id">
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">Image Name</label>
+							<input type="text" class="form-control" id="update-imagename" name="imagename"
+								pattern="[A-Za-z\s]+" title="Please enter a valid name" required>
+
+						</div>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">Image</label>
+							<input type="file" src="" class="form-control" id="update-image" name="file"
+								onchange="updatepreviewImage(this)">
+							<img id="prev" alt="Image Preview"
+								style="max-width: 100px; max-height: 100px; display: none;">
+
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal"
+								id="add-cancel">Cancel</button>
+							<button type="submit" class="btn btn-success" id="add-btn">Update Image</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Update Image modal end here   -->
+
+
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+		integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+		crossorigin="anonymous"></script>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+	<script>
+
+		function getAllImages() {
+			
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: "/getall",
+				dataType: 'json',
+				//cache: false,
+
+				success: function (data) {
+
+					var table = '';
+
+					for (var i = 0; i < data.length; i++) {
+						table += '<tr>'; 
+						table += '<td>'
+							+ data[i].imageno +
+							'</td>';
+						table += '<td>'
+							+ data[i].imagename
+							+ '</td>';
+						table += '<td>'
+							+ '<img src="data:image/png;base64,' + data[i].image + '" alt="Image" style="max-width:100px; max-height:100px;">'
+							+ '</td>';
+						table += '<td>'
+							+ '<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#upmodal" onclick="getImageById(' + data[i].id + '); ">Update</button>'
+							+ '&nbsp &nbsp &nbsp'
+							+ '<button type="button" class="btn btn-danger" onclick="deleteImageById(' + data[i].id + ');">Delete</button>'
+							+ '</td>'
+							+ '</tr>';
+					}
+					$('#imagetable tbody').html(table);
+
+				},
+
+				error: function (e) {
+					alert('Error While Fetching Student');
+				}
+			});
+		}
+
+
+
+
+
+		function deleteImageById(id) {
+
+			if (window.confirm("Are you sure you want to delete this item?")) {
+				$.ajax({
+					type: "DELETE",
+					contentType: "application/json",
+					url: "delete/" + id,
+					//	dataType: 'json',
+					//cache: false,
+
+
+
+					success: function () {
+
+						alert('deleted Successfully')
+						getAllImages();
+					},
+
+					error: function (e) {
+
+
+						alert('Error While Deleting Image')
+
+
+
+					}
+
+
+
+
+				});
+			}
+			else {
+				alert("Deletion canceled.");
+
+			}
+		}
+
+
+
+
+
+		function getImageById(id) {
+			// Assuming you have an input field in the modal to store the image ID
+			$('#update-image-id').val(id);
+
+			// Make an AJAX request to get image details by ID
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: "/getbyid/" + id, // Replace with your actual endpoint
+				dataType: 'json',
+				success: function (data) {
+					// Populate the form fields with the retrieved data
+					$('#update-imageno').val(data.imageno);
+					$('#update-imagename').val(data.imagename);
+					$('#update-image').attr('src', 'data:image/png;base64,' + data.image);
+
+					// Note: Image field may not be editable, consider displaying it as an image or provide an option to upload a new image if needed
+				},
+				error: function (e) {
+					alert('Error while fetching image details');
+				}
+			});
+		}
+
+
+
+		function addpreviewImage() {
+			var input = document.getElementById('add-image');
+			var preview = document.getElementById('preview');
+
+			var file = input.files[0];
+
+			if (file) {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					preview.src = e.target.result;
+					preview.style.display = 'block'; // Show the preview
+				};
+				reader.readAsDataURL(file);
+			} else {
+				// Clear the preview if no file is selected and hide it
+				preview.src = '';
+				preview.style.display = 'none';
+			}
+		}
+
+
+		function updatepreviewImage() {
+			var input = document.getElementById('update-image');
+			var preview = document.getElementById('prev');
+
+			var file = input.files[0];
+
+			if (file) {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					preview.src = e.target.result;
+					preview.style.display = 'block'; // Show the preview
+				};
+				reader.readAsDataURL(file);
+			} else {
+				// Clear the preview if no file is selected and hide it
+				preview.src = '';
+				preview.style.display = 'none';
+			}
+		}
+
+		function checkno(imageno) {
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: "exist/" + imageno, // Replace with your actual endpoint
+				dataType: 'text',
+				success: function (data) {
+					if (data == "Image no allready exist") {
+						alert("image no allready exist");
+
+					}
+					else {
+						$('#imgno').text("Valid Iamge No");
+					}
+
+				},
+				error: function (e) {
+					$('#imgno').val(e);
+				}
+			});
+		}
+
+		function checkname(imagename) {
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: "existby/" + imagename, // Replace with your actual endpoint
+				dataType: 'text',
+				success: function (data) {
+					if (data == "Image name allready exist") {
+						alert("image name allready exist");
+
+					}
+					else {
+						$('#imgname').text("Valid Image Name");
+					}
+
+				},
+				error: function (e) {
+
+				}
+			});
+		}
+
+
+
+		function clearForm() {
+
+			$('#add-imageno').val('');
+			$('#add-imagename').val('');
+
+			$('#imgno').text('');
+			$('#imgname').text('');
+			$('#add-image').val('');
+			$('#preview').attr('src', '').hide();
+		}
+
+	</script>
+
+
+
+
+
+
+</body>
+
+</html>

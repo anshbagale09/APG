@@ -1,0 +1,105 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+        }
+
+        #container {
+            display: flex;
+            flex: 1;
+        }
+
+        #left-sidebar, #center-content, #right-sidebar {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #left-sidebar {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #left-sidebar button {
+            margin-bottom: 10px;
+        }
+
+        #center-content {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .cards {
+            width: calc(33.33% - 20px);
+            margin: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        #right-sidebar {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #right-sidebar button {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="left-sidebar">
+            <button>Button 1</button>
+            <button>Button 2</button>
+            <button>Button 3</button>
+            <button>Button 4</button>
+        </div>
+        <div id="center-content">
+            <!-- 12 Cards -->
+            <div class="cards">Card 1</div>
+            <div class="cards">Card 2</div>
+            <div class="cards">Card 3</div>
+            <div class="cards">Card 4</div>
+            <div class="cards">Card 5</div>
+            <div class="cards">Card 6</div>
+            <div class="cards">Card 7</div>
+            <div class="cards">Card 8</div>
+            <div class="cards">Card 9</div>
+            <div class="cards">Card 10</div>
+            <div class="cards">Card 11</div>
+            <div class="cards">Card 12</div>
+        </div>
+        <div id="right-sidebar">
+            <button>Button A</button>
+            <button>Button B</button>
+            <button>Button C</button>
+            <button>Button D</button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+

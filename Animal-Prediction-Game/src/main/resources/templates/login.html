@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+	<title>
+		Animal Prediction Game
+	</title>
+	<!--     Fonts and icons     -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<!-- Nucleo Icons -->
+	<link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+	<link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+	<!-- Font Awesome Icons -->
+	<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+	<link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+	<!-- CSS Files -->
+	<link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+</head>
+
+<body class="">
+
+	<main class="main-content  mt-0">
+        <section>
+            <div class="page-header min-vh-75">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+                            <div class="card card-plain mt-8">
+                                <div class="card-header pb-0 text-left bg-transparent">
+                                    <h3 class="font-weight-bolder text-info text-gradient">&nbsp &nbsp &nbsp &nbsp
+                                        User Login</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form id="loginForm" role="form">
+                                        <label>Email</label>
+                                        <div class="mb-3">
+                                            <input type="email" class="form-control" placeholder="Email"
+                                                aria-label="Email" aria-describedby="email-addon" id="login-email"
+                                                required>
+                                        </div>
+                                        <label>Password</label>
+                                        <div class="mb-3">
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" placeholder="Password"
+                                                    aria-label="Password" aria-describedby="password-addon"
+                                                    id="login-password" required>
+                                                <span class="input-group-text" id="toggle-password">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                </span>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="button" onclick="submitLoginForm()"
+                                                    class="btn bg-gradient-info w-100 mt-4 mb-0">Log in</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="text-center mt-3">
+                                        <a href="/register" class="text-info">Don't have an account? Register
+                                            here</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+	<!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+
+	<!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+	<!--   Core JS Files   -->
+	<script src="../assets/js/core/popper.min.js"></script>
+	<script src="../assets/js/core/bootstrap.min.js"></script>
+	<script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+	<script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+
+	<!-- Github buttons -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+	<script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+
+	<script>
+ document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.getElementById('login-password');
+        const togglePassword = document.getElementById('toggle-password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('active');
+        });
+    });
+
+    function submitLoginForm() {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        var loginData = {
+            email: email,
+            password: password
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/userLogin', // Replace with your actual endpoint for login
+            contentType: 'application/json',
+            data: JSON.stringify(loginData),
+            success: function (response) {
+                // Handle the success response
+                console.log(response);
+                alert('Login successful!');
+                clearform();
+               window.location.href = '/user-index';
+                // Redirect to the dashboard or perform any other actions
+            },
+            error: function (error) {
+                // Handle the error response
+                console.error(error);
+                alert('Login failed. Please check your credentials.');
+                clearform();
+            }
+        });
+    }
+
+function clearform()
+{
+	  document.getElementById('login-email').value = '';
+      document.getElementById('login-password').value = '';
+}
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Animal Prediction Game</title>
+	<!-- Add Bootstrap CSS link -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<style>
+		body {
+			background-color: antiquewhite;
+		}
+	.card-img-top {
+    height: 150px; /* Set your preferred height */
+    width: 150px;  /* Set your preferred width */
+    object-fit: cover; /* or object-fit: fill, depending on your preference */
+    border-radius: 20px;
+}
+
+
+
+
+
+
+		.card {
+			border: 2px solid #007bff;
+			border-radius: 10px;
+			width: 120px;
+			height: 190px;
+			margin-bottom: 10px;
+			transition: transform 0.2s ease-in-out;
+			background-color: lightblue;
+		}
+
+		.card:hover {
+			transform: scale(1.05);
+		}
+
+		.cards {
+			border: 2px solid pink;
+			border-radius: 10px;
+			width: 150px;
+			height: 85px;
+
+		}
+
+		.custom-btn-lg {
+			padding: 20px 30px;
+			/* Adjust the padding to increase the button size */
+			/* Adjust the font size for larger text */
+			border-radius: 50%;
+		}
+
+		.btn-col {
+			margin-bottom: 5px;
+		}
+
+		.card-col {
+			padding: 5px;
+		}
+
+		#timer {
+			font-size: 24px;
+			text-align: center;
+
+		}
+
+		.text-box {
+			width: 100px;
+			/* Adjust the width as needed */
+			/* Adjust the padding as needed */
+			border: 0px dotted #000;
+			/* Dotted border with black color */
+			border-radius: 5px;
+
+			font-size: 25px;
+			/* Adjust the border-radius for rounded corners */
+			text-align: center;
+			/* Center-align the text */
+			background-color: grey;
+
+			height: 25px;
+
+
+		}
+	</style>
+</head>
+
+<body onload="getalldata();">
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: grey;">
+		<div class="col-md-2 mb-1">
+			<div class="cards">
+				<div class="card-body">
+					<h6 class="card-title text-center">Total Balance</h6>
+					<input type="text" class="text-box" value="12345">
+
+
+
+				</div>
+			</div>
+		</div>
+		<h6 class="" style=" margin-top: 2rem; font-size: 15px;">This Game Is Only For Entertainment</h6>
+		&nbsp&nbsp&nbsp&nbsp
+
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 2rem; width: 45px;">2</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 2rem; width: 45px;">5</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 2rem; width: 45px;">9</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 2rem; width: 45px;">6</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 2rem; width: 45px;">12</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 2rem; width: 45px;">1</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 2rem; width: 45px;">4</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 2rem; width: 45px;">2</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 2rem; width: 45px;">8</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 2rem; width: 45px;">3</a>
+		<div class="col-md-2 mb-1 ml-auto">
+			<div class="cards">
+				<div class="card-body">
+					<h6 class="card-title text-center">Win Points</h6>
+					<input type="text" class="text-box" value="-----">
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container mt-4">
+		<div class="row">
+			<!-- First Row of Buttons and Cards -->
+			<div>
+				<button class="btn btn-primary custom-btn-lg ">10</button><br><br>
+				<button class="btn btn-primary custom-btn-lg ">30</button>
+			</div>
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">1</button>
+								<!-- Image in the Middle -->
+								<img class="card-img-top" alt="Image" id="image1"
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b1"
+									style="border-radius: 20px;  position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 "></button>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">2</button>
+								<!-- Image in the Middle -->
+								<img class="card-img-top" alt="Image" id="image2"
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b2"
+									style="border-radius: 20px;  position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 "></button>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">3</button>
+								<!-- Image in the Middle -->
+								<img id="image3" class="card-img-top" alt="Image"
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b3"
+									style="border-radius: 20px;  position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 "></button>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">4</button>
+								<!-- Image in the Middle -->
+								<img id="image4" class="card-img-top" alt="Image"
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b4"
+									style="border-radius: 20px; position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 "></button>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">5</button>
+								<!-- Image in the Middle -->
+								<img id="image5" class="card-img-top" alt="Image"
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b5"
+									style="border-radius: 20px;  position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 "></button>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">6</button>
+								<!-- Image in the Middle -->
+								<img id="image6" class="card-img-top" alt="Image"
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b6"
+									style="border-radius: 20px;  position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 "></button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<button class="btn btn-primary custom-btn-lg">100</button> <br> <br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<button class="btn btn-primary custom-btn-lg">500</button>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<!-- Second Row of Buttons and Cards -->
+			<div>
+				<button class="btn btn-primary custom-btn-lg">40</button> <br> <br>
+				<button class="btn btn-primary custom-btn-lg">50</button>
+			</div>
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">7</button>
+								<!-- Image in the Middle -->
+								<img id="image7" class="card-img-top" alt="Image"
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b7"
+									style="border-radius: 20px;  position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 ">Hello</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">8</button>
+								<!-- Image in the Middle -->
+								<img id="image8" class="card-img-top" alt="Image"
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b8"
+									style="border-radius: 20px; position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 ">Hello</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">9</button>
+								<!-- Image in the Middle -->
+								<img id="image9" class="card-img-top" alt="Image"
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b9"
+									style="border-radius: 20px;  position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 ">Hello</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">10</button>
+								<!-- Image in the Middle -->
+								<img id="image10" class="card-img-top" alt="Image" 
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b10"
+									style="border-radius: 20px;  position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 ">Hello</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">11</button>
+								<!-- Image in the Middle -->
+								<img id="image11" class="card-img-top" alt="Image"
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b11"
+									style="border-radius: 20px;  position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 ">Hello</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="card mx-auto text-center">
+							<div style="position: relative; height: 100%;">
+								<!-- Number on Top -->
+
+								<button type="button" class="btn btn-outline-dark btn-gt"
+									style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: grey;">12</button>
+								<!-- Image in the Middle -->
+								<img id="image12" class="card-img-top" alt="Image"
+									style="height: 100%; width: 100%; object-fit: contain; position: absolute; top: 0; left: 0; border-radius: 20px;">
+
+								<!-- Name at the Bottom -->
+
+								<button type="button" class="btn btn-outline-dark btn-sm" id="b12"
+									style="border-radius: 20px;  position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); z-index: 1 ">Hello</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<button class="btn btn-primary custom-btn-lg">1000</button> <br> <br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<button class="btn btn-primary custom-btn-lg">5000</button>
+			</div>
+		</div>
+	</div>
+
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: grey;">
+		<div class="col-md-2 mb-1">
+			<div class="cards">
+				<div class="card-body">
+					<h6 class="card-title text-center">Played Points</h6>
+					<input type="text" class="text-box" value="-----">
+				</div>
+			</div>
+		</div>
+		<!-- Add your buttons here for the second row in the navbar -->
+		<button type="button" class="btn btn-outline-warning btn-sm "
+			style="border-radius: 20px; margin-top: 2rem; font-size: 16px;">Cancel All Bit</button>&nbsp
+		<button type="button" class="btn btn-outline-warning btn-sm"
+			style="border-radius: 20px; margin-top: 2rem; font-size: 16px;">Cancel Previous
+			Bit</button>&nbsp
+		<button type="button" class="btn btn-outline-warning btn-sm"
+			style="border-radius: 20px; margin-top: 2rem; font-size: 16px;">Upper Line</button>&nbsp
+		<button type="button" class="btn btn-outline-warning btn-sm"
+			style="border-radius: 20px; margin-top: 2rem;font-size: 16px;">Lower Line</button>&nbsp
+		<button type="button" class="btn btn-outline-warning btn-sm"
+			style="border-radius: 20px;margin-top: 2rem; font-size: 16px;">Odd Number's</button>&nbsp
+		<button type="button" class="btn btn-outline-warning btn-sm"
+			style="border-radius: 20px;margin-top: 2rem; font-size: 16px;">Even Number's</button>&nbsp
+		<a href="/login"><button type="button" class="btn btn-outline-warning btn-sm"
+				style="border-radius: 20px;margin-top: 2rem;font-size: 16px;">Logout</button></a>&nbsp
+		<!-- Repeat as needed -->
+		<!-- End of buttons for the second row -->
+		<div class="col-md-2 mb-1 ml-auto">
+			<div class="cards">
+				<div class="card-body">
+					<h6 class="card-title text-center" id="timer">00:00</h6>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="modal fade" id="countdownModal" tabindex="-1" role="dialog" aria-labelledby="countdownModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="countdownModalLabel">Attention</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="modalBodyContent">
+					<!-- Content will be updated dynamically -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Add Bootstrap JS and Popper.js scripts (required for some Bootstrap components) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+		integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+		crossorigin="anonymous"></script>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script>
+
+
+
+
+    function getalldata() {
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "/getall",
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    // Log to console for debugging
+                  //  console.log('Setting image ' + (i + 1) + ' source:', data[i].image);
+
+                    // Assuming data[i].image contains the base64 image data
+                    $('#image' + (i + 1)).attr('src', 'data:image/png;base64,' + data[i].image);
+
+                    // Set the name attribute of the button based on the image name
+                    console.log(data)
+                    $('#b' + (i + 1)).text(data[i].imagename);
+                }
+            },
+            error: function (e) {
+                // Log to console for debugging
+                console.error('Error While Fetching images:', e);
+                alert('Error While Fetching images');
+            }
+        });
+    }
+    
+    
+    
+    
+    
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

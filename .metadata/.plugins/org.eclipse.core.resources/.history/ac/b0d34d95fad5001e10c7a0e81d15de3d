@@ -1,0 +1,63 @@
+package com.animal.Entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import java.time.LocalDateTime;
+
+@Entity
+public class SpinId {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String spinId;
+
+    private LocalDateTime creationTime;
+
+    private String result; // Add a field to store the result
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSpinId() {
+        return spinId;
+    }
+
+    public void setSpinId(String spinId) {
+        this.spinId = spinId;
+    }
+
+    public LocalDateTime getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(LocalDateTime creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public SpinId() {
+        // Default constructor is needed for JPA
+    }
+
+    public SpinId(String spinId, LocalDateTime creationTime, String result) {
+        this.spinId = spinId;
+        this.creationTime = creationTime;
+        this.result = result;
+    }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/admin-comman/admincommanpage :: head">
+	<meta charset="UTF-8">
+</head>
+
+<body>
+
+	<aside th:replace="admin/admin-comman/admincommanpage :: side">
+	</aside>
+	<nav th:replace="admin/admin-comman/admincommanpage :: upside">
+	</nav>
+	<div style="margin-left: 270px;">
+		<button type="button" data-toggle="modal" data-target="#addmodal" class="btn btn-success">Add Point Ratio</button>
+	</div>
+	
+	<div style="margin-left: 270px;">
+		<table class="table table-borderless" id="pointtable">
+			<thead>
+				<tr>
+					<th scope="col">Ammount</th>
+					<th scope="col">Multiply By</th>
+					<th scope="col">Total</th>
+					<th scope="col">Actions</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+
+
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

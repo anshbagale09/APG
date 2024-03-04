@@ -1,0 +1,53 @@
+package com.animal.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.animal.Entity.Response;
+import com.animal.ServiceImpl.TimerResponse;
+import com.animal.ServiceImpl.TimerService;
+
+@RestController
+@RequestMapping("/timer")
+public class TimerController {
+
+    @Autowired
+    private TimerService timerService;
+
+    @GetMapping("/start")
+    public TimerResponse startTimer() {
+        return timerService.startOrResetTimer();
+    }
+
+    @GetMapping("/status")
+    public TimerResponse getTimerStatus(Response response) {
+        return timerService.getTimerStatus();
+    }
+    @PostMapping("/getresult")
+    public ResponseEntity<Long> getResult(Response response)
+    {
+    	Response res=new Response();
+    	res.setT1(response.getT1());
+    	res.setT2(response.getT2());
+    	res.setT3(response.getT3());
+    	res.setT4(response.getT4());
+    	res.setT5(response.getT5());
+    	res.setT6(response.getT6());
+    	res.setT7(response.getT7());
+    	res.setT8(response.getT8());
+    	res.setT9(response.getT9());
+    	res.setT10(response.getT10());
+    	res.setT11(response.getT11());
+    	res.setT12(response.getT12());
+    	res.setPlayedamount(response.getPlayedamount());
+    	
+    	
+    	return timerService.getResultFromResponse(response);
+    	
+    }
+}
+

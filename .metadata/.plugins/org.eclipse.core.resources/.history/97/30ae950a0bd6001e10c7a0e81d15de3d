@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Animal Prediction Game</title>
+	<!-- Add Bootstrap CSS link -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<style>
+		body {
+			background-color: antiquewhite;
+			overflow: hidden;
+
+		}
+
+		.card {
+			border: 2px solid #007bff;
+			border-radius: 10px;
+			width: 160px;
+			height: 190px;
+			margin-bottom: 7px;
+			margin-top: 7px;
+			margin-left: 20px;
+			transition: transform 0.2s ease-in-out;
+			background-color: lightblue;
+		}
+
+		.card:hover {
+			transform: scale(1.05);
+		}
+
+		.cards {
+			border: 2px solid pink;
+			border-radius: 10px;
+			width: 150px;
+			height: 85px;
+
+		}
+
+
+		.custom-btn-lg {
+			padding: 20px 30px;
+			/* Adjust the padding to increase the button size */
+			/* Adjust the font size for larger text */
+			border-radius: 50%;
+		}
+
+		.btn-col {
+			margin-bottom: 5px;
+		}
+
+		.card-col {
+			padding: 5px;
+		}
+
+		#timer {
+			font-size: 24px;
+			text-align: center;
+
+		}
+
+		.text-box {
+			width: 100px;
+			/* Adjust the width as needed */
+			/* Adjust the padding as needed */
+			border: 0px dotted #000;
+			/* Dotted border with black color */
+			border-radius: 5px;
+
+			font-size: 25px;
+			/* Adjust the border-radius for rounded corners */
+			text-align: center;
+			/* Center-align the text */
+			background-color: grey;
+
+			height: 25px;
+
+
+		}
+		.navbar {
+            background-color: pink;
+            height: 101px;
+            padding: 0;
+        }
+        .text-box{
+			background-color: pink;
+		}
+		
+		  #mySidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            right: 0; /* Change left to right */
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        #mySidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #mySidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        #mySidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+         .menu-icon {
+            font-size: 40px; /* Increase font-size to make the icon larger */
+            cursor: pointer;
+            color:black;
+            margin-right: 15px;
+        }
+		.row
+		{
+			margin-left: 20px;
+		}
+		
+		#profileModal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f9f9f9;
+        padding: 20px;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+        max-width: 400px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+    #profileModal label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+            text-align: left; /* Adjust text alignment as needed */
+        }
+    #profileModal h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+      #profileModal p {
+            margin: 10px 0;
+            color: #666;
+            text-align: left; /* Adjust text alignment as needed */
+        }
+
+    #profileModal a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s ease;
+        margin-right: 8px;
+    }
+
+    #profileModal a:hover {
+        background-color: #45a049;
+    }
+    #profileModal a.cancel {
+    background-color: #ccc;
+    color: #333;
+}
+
+#profileModal a.cancel:hover {
+    background-color: #999;
+}
+
+
+    
+
+    
+    
+    
+        
+        .edit-modal {
+         display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f9f9f9;
+        padding: 20px;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc;
+        max-width: 400px;
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 8px;
+    }
+
+    .edit-modal label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .edit-modal input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+    }
+
+    .edit-modal a {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #4caf50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 8px;
+    }
+
+    .edit-modal a:hover {
+        background-color: #45a049;
+    }
+
+    .edit-modal a.cancel {
+        background-color: #ccc;
+        color: #333;
+    }
+
+    .edit-modal a.cancel:hover {
+        background-color: #999;
+    }
+     #editModal .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    #profileModal .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            max-width: 80%; /* Adjust the maximum width as needed */
+            width: 400px; /* Set a fixed width or adjust as needed */
+            text-align: center;
+            display: none;
+        }
+
+        /* Close button styles */
+        .modal span {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Button and text styles */
+        .modal h2,
+        .modal p,
+        .modal ul,
+        .modal li,
+        .modal a {
+            color: #333;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+
+        /* Hover effect on buttons */
+        .button-container a:hover {
+            background-color: #0056b3;
+        }
+
+
+
+         .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .fullscreen-modal {
+            background-color: #f9f9f9;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            text-align: center;
+            border-radius: 8px;
+            max-width: 80%;
+            width: 600px;
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Add your existing styles here */
+
+        .cancel {
+            background-color: #ccc;
+            color: #333;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            margin-right: 8px;
+            display: inline-block;
+        }
+
+        .cancel:hover {
+            background-color: #999;
+        }
+
+
+
+		
+	</style>
+	
+	 <script>
+        function toggleNav() {
+            var sidenav = document.getElementById("mySidenav");
+            if (sidenav.style.width === "150px") {
+                sidenav.style.width = "0";
+            } else {
+                sidenav.style.width = "150px";
+            }
+        }
+       
+
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbs5uBz9NlV+KzRR5TPZd9wgg4IuHq4LMpZ9nq0lFXJlZl4qdtBAVl8koj7IZl/n" crossorigin="anonymous">
+
+</head>
+
+<body onload="getalldata();">
+	<nav class="navbar navbar-expand-lg navbar-light">	
+		<div class="col-md-2 mb-1">
+			<div class="cards">
+				<div class="card-body">
+					<h6 class="card-title text-center">Total Balance</h6>
+					<input type="text" class="text-box" placeholder="----" disabled>
+
+
+
+				</div>
+			</div>
+		</div>
+		<h6 class="" style=" margin-top: 1rem; width :420px">This Game Is Only For Entertainment</h6>&nbsp&nbsp&nbsp&nbsp&nbsp
+		
+
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">2</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">5</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">9</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">6</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">12</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">1</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">4</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">2</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">8</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">3</a>&nbsp&nbsp&nbsp&nbsp&nbsp
+		<div class="col-md-2 mb-1 ">
+			<div class="cards">
+				<div class="card-body">
+					<h6 class="card-title text-center">Win Points</h6>
+					<input type="text" class="text-box" placeholder="----" style="background-color: pink;" disabled>
+				</div>
+			</div>
+		</div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		 <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a>
+            <a href="#" onclick="openProfile()">Profile</a>
+            <a href="/payment">Add Cash</a>
+            <a href="#">Withdrawal</a>
+            <a href="#">Help</a>
+            <a href="#" onclick="openAboutGameModal();">About Us</a>
+            <!-- Logout link initially hidden -->
+            <a href="/logout" id="logoutLink">Logout</a>
+
+        </div>
+	</nav>
+
+	<div>
+		<div class="row">
+			<!-- First Row of Buttons and Cards -->
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<div class="row">
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt disabled"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink; ">1</button>
+							<!-- Image in the Middle -->
+							<img class="card-img-top" alt="Image" id="image1"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+
+							<input type="text" class="numeric-input form-control" id="amount1" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 85px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(1)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(1)"
+								style="position: absolute; bottom: 5px; left: 84%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">2</button>
+							<!-- Image in the Middle -->
+							<img class="card-img-top" alt="Image" id="image2"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount2" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(2)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(2)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">3</button>
+							<!-- Image in the Middle -->
+							<img id="image3" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount3" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(3)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(3)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">4</button>
+							<!-- Image in the Middle -->
+							<img id="image4" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount4" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(4)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(4)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">5</button>
+							<!-- Image in the Middle -->
+							<img id="image5" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount5" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(5)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(5)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">6</button>
+							<!-- Image in the Middle -->
+							<img id="image6" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount6" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(6)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(6)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+		<div class="row mt-4">
+			<!-- Second Row of Buttons and Cards -->
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<div class="row">
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">7</button>
+							<!-- Image in the Middle -->
+							<img id="image7" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount7" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(7)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(7)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">8</button>
+							<!-- Image in the Middle -->
+							<img id="image8" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount8" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(8)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(8)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">9</button>
+							<!-- Image in the Middle -->
+							<img id="image9" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount9" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(9)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(9)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">10</button>
+							<!-- Image in the Middle -->
+							<img id="image10" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount10" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(10)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(10)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">11</button>
+							<!-- Image in the Middle -->
+							<img id="image11" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount11" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(11)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(11)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">12</button>
+							<!-- Image in the Middle -->
+							<img id="image12" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount12" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(12)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(12)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: pink; height: 130px;">
+		<div style="height: 80px;">
+		<div class="col-md-2 mb-1">
+			<div class="cards">
+				<div class="card-body">
+					<h6 class="card-title text-center">Played Points</h6>
+					<input type="text" placeholder="----" class="text-box" id="playedPoints"
+						style="background-color: pink; " disabled>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- Add your buttons here for the second row in the navbar -->
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm "
+			style="border-radius: 20px; margin-top: 3rem; font-size: 16px; background-color: black;"
+			onclick="cancelAllBits();">Cancel All
+			Bit</button>&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm"
+			style="border-radius: 20px; margin-top: 3rem; font-size: 16px; background-color: black;">Cancel Previous
+			Bit</button>&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm"
+			style="border-radius: 20px; margin-top: 3rem; font-size: 16px; background-color: black;"
+			onclick="upperline();">Upper
+			Line</button>&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm"
+			style="border-radius: 20px; margin-top: 3rem;font-size: 16px; background-color: black;"
+			onclick="lowerline();">Lower
+			Line</button>&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm"
+			style="border-radius: 20px;margin-top: 3rem; font-size: 16px; background-color: black;"
+			onclick="oddselect();">Odd
+			Number's</button>&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm"
+			style="border-radius: 20px;margin-top: 3rem; font-size: 16px; background-color: black;"
+			onclick="evenselect();">Even
+			Number's</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<a href="/logout">
+    <button id="logoutButton" type="button" class="btn btn-outline-dark btn-sm"
+            style="border-radius: 20px; margin-top: 3rem; font-size: 16px; background-color: black; display: none;">
+        Logout
+    </button>
+</a>
+
+		<!-- Repeat as needed -->
+		<!-- End of buttons for the second row -->
+<div class="col-md-2 mb-1" style="height: 70px;">
+    <div class="cards">
+        <div class="card-body">
+            <h6 class="card-title text-center" id="timer" style="margin-top: 1.4rem;">
+            </h6>
+        </div>
+    </div>
+</div>
+	</nav>
+	
+	
+<!-- Modal -->
+<div id="profileModal">
+    <h2>User Profile</h2>
+    <label for="profileName">Name</label>
+    <p id="profileName"></p>
+    
+    <label for="profileEmail">Email</label>
+    <p id="profileEmail"></p>
+    
+    <label for="profileMobile">Mobile No</label>
+    <p id="profileMobile"></p>
+    
+    <label for="profilePassword">Password</label>
+    <p id="profilePassword"></p>
+    <br/>
+
+    <div class="button-container">
+        <!-- Update button -->
+        <a href="#" onclick="openEditModal()">Update</a>
+        
+        <!-- Close button -->
+        <a href="#" onclick="closeProfile()" class="cancel" >Close</a>
+    </div>
+</div>
+
+<!-- Edit Modal (Hidden by default) -->
+<div id="editModal" class="modal edit-modal" style="display: none;">
+    <!-- Add fields for editing (e.g., input elements) -->
+    <h2>Update Profile</h2><br/>
+    <label for="editName">Name</label>
+    <input type="text" id="editName">
+
+    <label for="editEmail">Email</label>
+    <input type="text" id="editEmail">
+
+    <label for="editMobile">Mobile No</label>
+    <input type="text" id="editMobile">
+
+    <label for="editPassword">Password</label>
+    <input type="password" id="editPassword">
+    <br/>
+    
+    <div class="button-container">
+        <!-- Save button -->
+        <a href="#" onclick="saveChanges()">Save Changes</a>
+        
+        <!-- Cancel button -->
+        <a href="#" onclick="closeEditModal()" class="cancel">Cancel</a>
+    </div>
+</div>
+
+
+
+		
+		
+		
+		
+		
+		<!-- About Animal Prediction Game Modal -->
+<div id="aboutGameModal" class="modal">
+    <span onclick="closeAboutGameModal()" style="font-size:30px;">&times;</span>
+    <h2>About Us </h2>
+    <br/>
+	<h4>Animal Prediction Game</h4>
+    <p>Welcome to our Animal Prediction Game! This interactive experience is designed to...</p>
+
+    <p>Explore the fascinating world of animals and test your intuition in predicting their behaviors. Whether you're a wildlife enthusiast or just looking for some fun, our game is suitable for all ages.</p>
+
+    <p>How to Play:</p>
+    <ul>
+        <li>Select an animal from the 12 Cards</li>
+        <li>Choose amount depending on you</li>
+        <li>Wait for timer to complete 2 minutes.If 2minutes completes It open appropriate animal no as a result</li>
+    </ul>
+
+    <p>Our Mission:</p>
+    <p>We aim to educate and entertain by bringing awareness to different animal behaviors and characteristics. Through this game, we hope to foster a love for wildlife and encourage curiosity about the natural world.</p>
+
+    <div class="button-container">
+        <!-- Close button -->
+        <a href="#" onclick="closeAboutGameModal()">Close</a>
+    </div>
+</div>
+
+<div id="loaderModal" class="overlay">
+    <div class="fullscreen-modal">
+        <div class="loader"></div>
+        <p>Wait for few seconds</p>
+    </div>
+</div>
+
+
+
+
+
+
+	<!-- Overlay -->
+<div id="overlay" class="overlay"></div>
+
+	<!-- Add Bootstrap JS and Popper.js scripts (required for some Bootstrap components) -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
+
+
+
+	<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    startTimer();
+});
+
+function startTimer() {
+    fetchTimerData()
+        .then(data => {
+            const timerElement = document.getElementById('timer');
+            if (timerElement) {
+                startCountdown(data.serverStartTime, data.timerDuration, timerElement);
+            } else {
+                console.error('Error starting timer: Timer element not found');
+            }
+        })
+        .catch(error => {
+            console.error('Error starting timer:', error);
+        });
+}
+
+function startCountdown(serverStartTime, timerDuration, display) {
+    // Convert serverStartTime and timerDuration to numeric values
+    serverStartTime = Number(serverStartTime);
+    timerDuration = Number(timerDuration);
+
+    // Check if serverStartTime and timerDuration are valid numbers
+    if (isNaN(serverStartTime) || isNaN(timerDuration)) {
+        console.error('Invalid serverStartTime or timerDuration values. serverStartTime:', serverStartTime, 'timerDuration:', timerDuration);
+        return;
+    }
+
+    function updateTimer() {
+        let currentTime = new Date().getTime();
+        let remainingTime = timerDuration - (currentTime - serverStartTime);
+
+        // Ensure that minutes and seconds are always positive
+        let minutes = Math.max(0, Math.floor(remainingTime / (1000 * 60)));
+        let seconds = Math.max(0, Math.floor((remainingTime % (1000 * 60)) / 1000));
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (minutes <= 0 && seconds <= 10 && !display.dataset.loaderShown) {
+            openLoaderModal();
+            display.dataset.loaderShown = true;
+        }
+
+        if (remainingTime <= 0) {
+            // Reset the timer to 2 minutes
+            fetchTimerData()
+                .then(data => {
+                    console.log('Fetched timer data:', data);
+                    startCountdown(data.serverStartTime, data.timerDuration, display);
+                })
+                .catch(error => {
+                    console.error('Error resetting timer:', error);
+                });
+        }
+    }
+
+    updateTimer();
+    let timerInterval = setInterval(updateTimer, 1000);
+}
+
+function fetchTimerData() {
+    return fetch('/timer/start')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Error fetching timer data:', error);
+            throw error; // rethrow the error to propagate it further
+        });
+}
+
+
+function openLoaderModal() {
+    // Display loader modal
+    document.getElementById("loaderModal").style.display = "flex";
+    
+    
+
+	const v1 = document.getElementById('amount1').value;
+    const v2 = document.getElementById('amount2').value;
+    const v3 = document.getElementById('amount3').value;
+    const v4 = document.getElementById('amount4').value;
+    const v5 = document.getElementById('amount5').value;
+    const v6 = document.getElementById('amount6').value;
+    const v7 = document.getElementById('amount7').value;
+    const v8 = document.getElementById('amount8').value;
+    const v9 = document.getElementById('amount9').value;
+    const v10 = document.getElementById('amount10').value;
+    const v11 = document.getElementById('amount11').value;
+    const v12 = document.getElementById('amount12').value;
+    const playedamount = document.getElementById('playedPoints').value;
+    
+	
+	var result={
+		t1:v1,
+		t2:v2,
+		t3:v3,
+		t4:v4,
+		t5:v5,
+		t6:v6,
+		t7:v7,
+		t8:v8,
+		t9:v9,
+		t10:v10,
+		t11:v11,
+		t12:v12,
+		playedamount:playedamount
+		
+		
+	}
+	
+ $.ajax({
+            type: 'POST',
+            url: 'timer/getresult', 
+            contentType: 'application/json',
+            data: JSON.stringify(result),
+            success: function (response) {
+                // Handle the success response
+                console.log(response);
+              
+            },
+            error: function (error) {
+                // Handle the error response
+                console.error(error);
+            }
+        });
+   
+
+    // Close loader modal after 10 seconds
+    setTimeout(closeLoaderModal, 10000);
+}
+
+function closeLoaderModal() {
+    document.getElementById("loaderModal").style.display = "none";
+    cancelAllBits();
+}
+
+
+
+
+
+
+
+
+
+
+  $(document).ready(function() {
+    // Add event listener to the document body for any click event
+    $(document.body).on('click', function() {
+        // Make an AJAX call to the "/checklog" endpoint
+        $.ajax({
+            url: '/checklog',
+            type: 'GET',
+            success: function(response) {
+                // Handle the response
+                if (response === 'loggedIn') {
+                    // User is logged in, stay on the current page
+                    console.log('User is logged in.');
+                    // Show the logout button
+                    //$('#logoutButton').show();
+                } else {
+                    // User is not logged in, redirect to the login page
+                    console.log('User is not logged in. Redirecting to /login');
+                    window.location.href = '/login';
+                }
+            },
+            error: function() {
+                // Handle the error, if any
+                console.error('Error making AJAX call');
+            }
+        });
+    });
+});
+
+
+
+
+
+
+
+
+
+		function getalldata() {
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: "/getall",
+				dataType: 'json',
+				success: function (data) {
+					for (var i = 0; i < data.length; i++) {
+
+						// Assuming data[i].image contains the base64 image data
+						$('#image' + (i + 1)).attr('src', 'data:image/png;base64,' + data[i].image);
+
+						// Set the name attribute of the button based on the image name
+
+					}
+				},
+				error: function (e) {
+					// Log to console for debugging
+					console.error('Error While Fetching images:', e);
+					alert('Error While Fetching images');
+				}
+			});
+		}
+
+
+
+		let totalPoints = 0;
+
+		function updateTotalPoints() {
+			// Sum up the amounts for all input fields
+			totalPoints = 0;
+			document.querySelectorAll('.numeric-input').forEach(input => {
+				totalPoints += parseInt(input.value) || 0;
+			});
+
+			// Update the value of the text box
+			const textBox = document.querySelector('#playedPoints');
+			textBox.value = totalPoints;
+		}
+
+		function incrementAmount(card) {
+			const input = document.getElementById(`amount${card}`);
+			input.value = (parseInt(input.value) || 0) + 10;
+			updateTotalPoints();
+		}
+
+		function decrementAmount(card) {
+			const input = document.getElementById(`amount${card}`);
+			const newValue = Math.max(0, (parseInt(input.value) || 0) - 10);
+			input.value = newValue;
+			updateTotalPoints();
+		}
+
+		function cancelAllBits() {
+			const textBox = document.querySelector('#playedPoints');
+			textBox.value = 00;
+
+			$('#amount1').val(00);
+			$('#amount2').val(00);
+			$('#amount3').val(00);
+			$('#amount4').val(00);
+			$('#amount5').val(00);
+			$('#amount6').val(00);
+			$('#amount7').val(00);
+			$('#amount8').val(00);
+			$('#amount9').val(00);
+			$('#amount10').val(00);
+			$('#amount11').val(00);
+			$('#amount12').val(00);
+
+		}
+
+
+
+		function upperline() {
+			incrementAmount(1);
+			incrementAmount(2);
+			incrementAmount(3);
+			incrementAmount(4);
+			incrementAmount(5);
+			incrementAmount(6);
+
+
+		}
+		function lowerline() {
+			incrementAmount(7);
+			incrementAmount(8);
+			incrementAmount(9);
+			incrementAmount(10);
+			incrementAmount(11);
+			incrementAmount(12);
+
+
+		}
+
+
+		function oddselect() {
+			incrementAmount(1);
+			incrementAmount(3);
+			incrementAmount(5);
+			incrementAmount(7);
+			incrementAmount(9);
+			incrementAmount(11);
+
+
+		}
+
+		function evenselect() {
+			incrementAmount(2);
+			incrementAmount(4);
+			incrementAmount(6);
+			incrementAmount(8);
+			incrementAmount(10);
+			incrementAmount(12);
+
+
+		}
+
+
+
+  function openProfile() {
+        // Fetch user profile data using a GET request
+        fetch('/profile')
+            .then(response => response.json())
+            .then(data => {
+                // Update modal content with user data
+                document.getElementById('profileName').innerText = data.name;
+                document.getElementById('profileEmail').innerText = data.email;
+                document.getElementById('profileMobile').innerText = data.mobileno;
+                document.getElementById('profilePassword').innerText = data.password;
+
+                // Display the modal
+                document.getElementById('profileModal').style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error fetching user profile:', error);
+                // Handle error (e.g., display an error message)
+            });
+    }
+
+        function openEditModal() {
+            // Copy profile data to the edit modal fields
+            document.getElementById('editName').value = document.getElementById('profileName').innerText;
+            document.getElementById('editEmail').value = document.getElementById('profileEmail').innerText;
+            document.getElementById('editMobile').value = document.getElementById('profileMobile').innerText;
+            document.getElementById('editPassword').value = document.getElementById('profilePassword').innerText;
+
+            // Show the edit modal and hide the profile modal
+            document.getElementById('profileModal').style.display = 'none';
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        function closeEditModal() {
+            // Hide the edit modal and show the profile modal
+            document.getElementById('profileModal').style.display = 'block';
+            document.getElementById('editModal').style.display = 'none';
+            closeProfile();
+        }
+
+        function saveChanges() {
+            // Add logic to save changes (e.g., make a PUT request to update the user's data)
+
+            // After saving changes, close the edit modal and refresh the profile modal
+            var updatedUser = {
+        name: document.getElementById('editName').value,
+        email: document.getElementById('editEmail').value,
+        mobileno: document.getElementById('editMobile').value,
+        password: document.getElementById('editPassword').value
+    };
+
+    // Send a PUT request to update the user details
+    fetch('/updateProfile', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedUser),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle success, e.g., close the edit modal and refresh the profile modal
+        closeEditModal();
+        openProfile();
+    })
+    .catch(error => {
+        console.error('Error updating user details:', error);
+        // Handle error (e.g., display an error message)
+    });
+            closeEditModal();
+            openProfile();
+        }
+
+        function closeProfile() {
+            document.getElementById('profileModal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+	
+
+
+function openAboutGameModal() {
+        document.getElementById("aboutGameModal").style.display = "block";
+        document.getElementById("overlay").style.display = "none";
+        document.body.classList.add("modal-open");
+    }
+
+    function closeAboutGameModal() {
+        document.getElementById("aboutGameModal").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+        document.body.classList.remove("modal-open");
+    }
+    
+
+
+
+
+ 
+	</script>
+
+</body>
+
+</html>

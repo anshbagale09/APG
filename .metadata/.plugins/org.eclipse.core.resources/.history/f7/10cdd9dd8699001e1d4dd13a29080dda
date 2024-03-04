@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Prediction Game</title>
+  <!-- Add Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: pink;
+    }
+
+    .card {
+      border: 2px solid #007bff;
+      border-radius: 10px;
+      width: 120px;
+      height: 190px;
+      margin-bottom: 10px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .cards {
+      border: 2px solid pink;
+      border-radius: 10px;
+      width: 150px;
+      height: 90px;
+    }
+     .rounded-btn {
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: grey;">
+    <div class="col-md-2 mb-1">
+      <div class="cards">
+        <div class="card-body">
+          <h5 class="card-title text-center">Total Balance</h5>
+        </div>
+      </div>
+    </div>
+    <h3 class="text-center" style="margin-bottom: 3rem;">This Game Is Only For Entertainment</h3>
+    <div class="col-md-2 mb-1 ml-auto">
+      <div class="cards">
+        <div class="card-body">
+          <h5 class="card-title text-center">Winning Points</h5>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="row">
+      <!-- First Row of Buttons and Cards -->
+      <div class="col-md-2">
+        <br><button class="btn btn-primary btn-block mb-3 rounded-btn">10</button><br><br>
+        <button class="btn btn-primary btn-block mb-2">30</button>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 1</h5>
+                <p class="card-text">Card 1.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 2</h5>
+                <p class="card-text">Card 2.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 3</h5>
+                <p class="card-text">Card 3.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 4</h5>
+                <p class="card-text">Card 4.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 5</h5>
+                <p class="card-text">Card 5.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 6</h5>
+                <p class="card-text">Card 6.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+       <br> <button class="btn btn-primary btn-block mb-2">100</button> <br> <br>
+        <button class="btn btn-primary btn-block mb-2">500</button>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <!-- Second Row of Buttons and Cards -->
+      <div class="col-md-2">
+         <br><button class="btn btn-primary btn-block mb-2">40</button> <br> <br>
+        <button class="btn btn-primary btn-block mb-2">50</button>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 7</h5>
+                <p class="card-text">Card 7.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 8</h5>
+                <p class="card-text">Card 8.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 9</h5>
+                <p class="card-text">Card 9.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 10</h5>
+                <p class="card-text">Card 10.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 11</h5>
+                <p class="card-text">Card 11.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card mx-auto">
+              <div class="card-body text-center">
+                <h5 class="card-title">Card 12</h5>
+                <p class="card-text">Card 12.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+         <br><button class="btn btn-primary btn-block mb-2">1000</button> <br> <br>
+        <button class="btn btn-primary btn-block mb-2">5000</button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: grey;">
+    <div class="col-md-2 mb-1">
+      <div class="cards">
+        <div class="card-body">
+          <h5 class="card-title text-center">Played Points</h5>
+        </div>
+      </div>
+    </div>
+    <!-- Add your buttons here for the second row in the navbar -->
+    <button type="button" class="btn btn-outline-warning btn-block my-2">Button A</button>
+    <button type="button" class="btn btn-outline-warning btn-block my-2">Button B</button>
+    <!-- Repeat as needed -->
+    <!-- End of buttons for the second row -->
+    <div class="col-md-2 mb-1 ml-auto">
+      <div class="cards">
+        <div class="card-body">
+          <h5 class="card-title text-center">Time</h5>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Add Bootstrap JS and Popper.js scripts (required for some Bootstrap components) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

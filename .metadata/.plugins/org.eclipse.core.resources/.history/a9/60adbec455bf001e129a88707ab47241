@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Animal Prediction Game</title>
+	<!-- Add Bootstrap CSS link -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<style>
+		body {
+			background-color: antiquewhite;
+			overflow: hidden;
+
+		}
+
+		.card {
+			border: 2px solid #007bff;
+			border-radius: 10px;
+			width: 160px;
+			height: 190px;
+			margin-bottom: 7px;
+			margin-top: 7px;
+			margin-left: 20px;
+			transition: transform 0.2s ease-in-out;
+			background-color: lightblue;
+		}
+
+		.card:hover {
+			transform: scale(1.05);
+		}
+
+		.cards {
+			border: 2px solid pink;
+			border-radius: 10px;
+			width: 150px;
+			height: 85px;
+
+		}
+
+
+		.custom-btn-lg {
+			padding: 20px 30px;
+			/* Adjust the padding to increase the button size */
+			/* Adjust the font size for larger text */
+			border-radius: 50%;
+		}
+
+		.btn-col {
+			margin-bottom: 5px;
+		}
+
+		.card-col {
+			padding: 5px;
+		}
+
+		#timer {
+			font-size: 24px;
+			text-align: center;
+
+		}
+
+		.text-box {
+			width: 100px;
+			/* Adjust the width as needed */
+			/* Adjust the padding as needed */
+			border: 0px dotted #000;
+			/* Dotted border with black color */
+			border-radius: 5px;
+
+			font-size: 25px;
+			/* Adjust the border-radius for rounded corners */
+			text-align: center;
+			/* Center-align the text */
+			background-color: grey;
+
+			height: 25px;
+
+
+		}
+		.navbar {
+            background-color: pink;
+            height: 101px;
+            padding: 0;
+        }
+        .text-box{
+			background-color: pink;
+		}
+		
+		  #mySidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            right: 0; /* Change left to right */
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        #mySidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #mySidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        #mySidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+         .menu-icon {
+            font-size: 40px; /* Increase font-size to make the icon larger */
+            cursor: pointer;
+            color:black;
+            margin-right: 15px;
+        }
+		.row
+		{
+			margin-left: 20px;
+		}
+	</style>
+	
+	 <script>
+        function toggleNav() {
+            var sidenav = document.getElementById("mySidenav");
+            if (sidenav.style.width === "150px") {
+                sidenav.style.width = "0";
+            } else {
+                sidenav.style.width = "150px";
+            }
+        }
+        function checkuserloggedinornot()
+        {
+			
+		}
+	
+
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbs5uBz9NlV+KzRR5TPZd9wgg4IuHq4LMpZ9nq0lFXJlZl4qdtBAVl8koj7IZl/n" crossorigin="anonymous">
+
+</head>
+
+<body onload="getalldata();" onclick="checkuserloggedinornot();">
+	<nav class="navbar navbar-expand-lg navbar-light">	
+		<div class="col-md-2 mb-1">
+			<div class="cards">
+				<div class="card-body">
+					<h6 class="card-title text-center">Total Balance</h6>
+					<input type="text" class="text-box" placeholder="----" disabled>
+
+
+
+				</div>
+			</div>
+		</div>
+		<h6 class="" style=" margin-top: 1rem; width :420px">This Game Is Only For Entertainment</h6>&nbsp&nbsp&nbsp&nbsp&nbsp
+		
+
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">2</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">5</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">9</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">6</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">12</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">1</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">4</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">2</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">8</a>&nbsp&nbsp
+		<a href="#" class="btn btn-secondary  disabled" role="button" aria-disabled="true"
+			style="margin-top: 1rem; width: 40px;">3</a>&nbsp&nbsp&nbsp&nbsp&nbsp
+		<div class="col-md-2 mb-1 ">
+			<div class="cards">
+				<div class="card-body">
+					<h6 class="card-title text-center">Win Points</h6>
+					<input type="text" class="text-box" placeholder="----" style="background-color: pink;" disabled>
+				</div>
+			</div>
+		</div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		 <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a>
+            <a href="#">Profile</a>
+            <a href="#">Add Cash</a>
+            <a href="#">Withdrawal</a>
+            <a href="#">Help</a>
+            <a href="#">About Us</a>
+            <!-- Logout link initially hidden -->
+            <a href="/logout" id="logoutLink">Logout</a>
+
+        </div>
+	</nav>
+
+	<div>
+		<div class="row">
+			<!-- First Row of Buttons and Cards -->
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<div class="row">
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt disabled"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink; ">1</button>
+							<!-- Image in the Middle -->
+							<img class="card-img-top" alt="Image" id="image1"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+
+							<input type="text" class="numeric-input form-control" id="amount1" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 85px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(1)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(1)"
+								style="position: absolute; bottom: 5px; left: 84%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">2</button>
+							<!-- Image in the Middle -->
+							<img class="card-img-top" alt="Image" id="image2"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount2" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(2)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(2)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">3</button>
+							<!-- Image in the Middle -->
+							<img id="image3" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount3" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(3)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(3)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">4</button>
+							<!-- Image in the Middle -->
+							<img id="image4" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount4" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(4)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(4)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">5</button>
+							<!-- Image in the Middle -->
+							<img id="image5" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount5" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(5)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(5)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">6</button>
+							<!-- Image in the Middle -->
+							<img id="image6" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount6" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(6)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(6)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+		<div class="row mt-4">
+			<!-- Second Row of Buttons and Cards -->
+			&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<div class="row">
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">7</button>
+							<!-- Image in the Middle -->
+							<img id="image7" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount7" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(7)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(7)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">8</button>
+							<!-- Image in the Middle -->
+							<img id="image8" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount8" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(8)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(8)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">9</button>
+							<!-- Image in the Middle -->
+							<img id="image9" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount9" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(9)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(9)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">10</button>
+							<!-- Image in the Middle -->
+							<img id="image10" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount10" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(10)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(10)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">11</button>
+							<!-- Image in the Middle -->
+							<img id="image11" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount11" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(11)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(11)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="card mx-auto text-center">
+						<div style="position: relative; height: 100%;">
+							<!-- Number on Top -->
+
+							<button type="button" class="btn btn-outline-dark btn-gt"
+								style="border-radius: 20px; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); z-index: 1; background-color: pink;">12</button>
+							<!-- Image in the Middle -->
+							<img id="image12" class="card-img-top" alt="Image"
+								style="height: 186.5px; width: 156px;  position: absolute; top: 0; left: 0; border-radius: 8px;">
+
+							<!-- Name at the Bottom -->
+
+
+							<input type="text" class="numeric-input form-control" id="amount12" name="amount"
+								placeholder="0" disabled
+								style="border-radius: 20px; width: 80px; height: 32px; position: absolute; bottom: 5px; left: 46%; transform: translateX(-50%); z-index: 1; background-color: white; text-align: center;" />
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="decrementAmount(12)"
+								style="position: absolute; bottom: 5px; right: 74%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								-
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-sm" onclick="incrementAmount(12)"
+								style="position: absolute; bottom: 5px; left: 83%; transform: translateX(-50%); z-index: 1; background-color: red;">
+								+
+							</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: pink; height: 130px;">
+		<div style="height: 80px;">
+		<div class="col-md-2 mb-1">
+			<div class="cards">
+				<div class="card-body">
+					<h6 class="card-title text-center">Played Points</h6>
+					<input type="text" placeholder="----" class="text-box" id="playedPoints"
+						style="background-color: pink; " disabled>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- Add your buttons here for the second row in the navbar -->
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm "
+			style="border-radius: 20px; margin-top: 3rem; font-size: 16px; background-color: black;"
+			onclick="cancelAllBits();">Cancel All
+			Bit</button>&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm"
+			style="border-radius: 20px; margin-top: 3rem; font-size: 16px; background-color: black;">Cancel Previous
+			Bit</button>&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm"
+			style="border-radius: 20px; margin-top: 3rem; font-size: 16px; background-color: black;"
+			onclick="upperline();">Upper
+			Line</button>&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm"
+			style="border-radius: 20px; margin-top: 3rem;font-size: 16px; background-color: black;"
+			onclick="lowerline();">Lower
+			Line</button>&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm"
+			style="border-radius: 20px;margin-top: 3rem; font-size: 16px; background-color: black;"
+			onclick="oddselect();">Odd
+			Number's</button>&nbsp&nbsp&nbsp
+		<button type="button" class="btn btn-outline-dark btn-sm"
+			style="border-radius: 20px;margin-top: 3rem; font-size: 16px; background-color: black;"
+			onclick="evenselect();">Even
+			Number's</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+		<a href="/logout">
+    <button id="logoutButton" type="button" class="btn btn-outline-dark btn-sm"
+            style="border-radius: 20px; margin-top: 3rem; font-size: 16px; background-color: black; display: none;">
+        Logout
+    </button>
+</a>
+
+		<!-- Repeat as needed -->
+		<!-- End of buttons for the second row -->
+<div class="col-md-2 mb-1 " style="height: 70px;">
+    <div class="cards">
+        <div class="card-body">
+            <h6 class="card-title text-center" id="timer" style="margin-top: 1.4rem;">
+            </h6>
+        </div>
+    </div>
+</div>
+
+	</nav>
+
+	<!-- Add Bootstrap JS and Popper.js scripts (required for some Bootstrap components) -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
+
+
+
+	<script>
+
+
+ 
+       function updateTimer(status) {
+            const remainingTimeElement = document.getElementById('remainingTime');
+
+            if (remainingTimeElement) {
+                // Display remaining time
+                remainingTimeElement.textContent = `Remaining Time: ${status.remainingTime.minutes} minutes and ${status.remainingTime.seconds} seconds`;
+            }
+        }
+
+        async function fetchSpinStatus() {
+            try {
+                const response = await fetch('/api/spin/status');
+                const status = await response.json();
+                updateTimer(status);
+            } catch (error) {
+                console.error('Error fetching spin status:', error);
+            }
+        }
+
+        // Fetch status initially and set up interval for periodic updates
+        fetchSpinStatus();
+        setInterval(fetchSpinStatus, 1000); // Update every second
+
+
+
+
+
+
+
+
+
+  $(document).ready(function() {
+    // Add event listener to the document body for any click event
+    $(document.body).on('click', function() {
+        // Make an AJAX call to the "/checklog" endpoint
+        $.ajax({
+            url: '/checklog',
+            type: 'GET',
+            success: function(response) {
+                // Handle the response
+                if (response === 'loggedIn') {
+                    // User is logged in, stay on the current page
+                    console.log('User is logged in.');
+                    // Show the logout button
+                    //$('#logoutButton').show();
+                } else {
+                    // User is not logged in, redirect to the login page
+                    console.log('User is not logged in. Redirecting to /login');
+                    window.location.href = '/login';
+                }
+            },
+            error: function() {
+                // Handle the error, if any
+                console.error('Error making AJAX call');
+            }
+        });
+    });
+});
+
+
+
+
+
+
+
+
+
+		function getalldata() {
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: "/getall",
+				dataType: 'json',
+				success: function (data) {
+					for (var i = 0; i < data.length; i++) {
+
+						// Assuming data[i].image contains the base64 image data
+						$('#image' + (i + 1)).attr('src', 'data:image/png;base64,' + data[i].image);
+
+						// Set the name attribute of the button based on the image name
+
+					}
+				},
+				error: function (e) {
+					// Log to console for debugging
+					console.error('Error While Fetching images:', e);
+					alert('Error While Fetching images');
+				}
+			});
+		}
+
+
+
+		let totalPoints = 0;
+
+		function updateTotalPoints() {
+			// Sum up the amounts for all input fields
+			totalPoints = 0;
+			document.querySelectorAll('.numeric-input').forEach(input => {
+				totalPoints += parseInt(input.value) || 0;
+			});
+
+			// Update the value of the text box
+			const textBox = document.querySelector('#playedPoints');
+			textBox.value = totalPoints;
+		}
+
+		function incrementAmount(card) {
+			const input = document.getElementById(`amount${card}`);
+			input.value = (parseInt(input.value) || 0) + 10;
+			updateTotalPoints();
+		}
+
+		function decrementAmount(card) {
+			const input = document.getElementById(`amount${card}`);
+			const newValue = Math.max(0, (parseInt(input.value) || 0) - 10);
+			input.value = newValue;
+			updateTotalPoints();
+		}
+
+		function cancelAllBits() {
+			const textBox = document.querySelector('#playedPoints');
+			textBox.value = 00;
+
+			$('#amount1').val(00);
+			$('#amount2').val(00);
+			$('#amount3').val(00);
+			$('#amount4').val(00);
+			$('#amount5').val(00);
+			$('#amount6').val(00);
+			$('#amount7').val(00);
+			$('#amount8').val(00);
+			$('#amount9').val(00);
+			$('#amount10').val(00);
+			$('#amount11').val(00);
+			$('#amount12').val(00);
+
+		}
+
+
+
+		function upperline() {
+			incrementAmount(1);
+			incrementAmount(2);
+			incrementAmount(3);
+			incrementAmount(4);
+			incrementAmount(5);
+			incrementAmount(6);
+
+
+		}
+		function lowerline() {
+			incrementAmount(7);
+			incrementAmount(8);
+			incrementAmount(9);
+			incrementAmount(10);
+			incrementAmount(11);
+			incrementAmount(12);
+
+
+		}
+
+
+		function oddselect() {
+			incrementAmount(1);
+			incrementAmount(3);
+			incrementAmount(5);
+			incrementAmount(7);
+			incrementAmount(9);
+			incrementAmount(11);
+
+
+		}
+
+		function evenselect() {
+			incrementAmount(2);
+			incrementAmount(4);
+			incrementAmount(6);
+			incrementAmount(8);
+			incrementAmount(10);
+			incrementAmount(12);
+
+
+		}
+
+
+	
+
+
+
+
+
+	</script>
+
+</body>
+
+</html>

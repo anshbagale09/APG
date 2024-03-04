@@ -1,0 +1,62 @@
+package com.animal.Entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+
+@Entity
+public class Result {
+
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	private String spinId;
+	
+	private String result;
+
+	public Result() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getSpinId() {
+		return spinId;
+	}
+
+	public void setSpinId(String spinId) {
+		this.spinId = spinId;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public Result(Long id, String spinId, String result) {
+		super();
+		this.id = id;
+		this.spinId = spinId;
+		this.result = result;
+	}
+
+
+	
+	 
+	
+}

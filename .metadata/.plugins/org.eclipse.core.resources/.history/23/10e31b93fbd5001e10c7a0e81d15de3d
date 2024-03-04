@@ -1,0 +1,113 @@
+package com.animal.ServiceImpl;
+
+import com.animal.Entity.Result;
+import com.animal.Entity.SpinId;
+import com.animal.Repository.SpinIdRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+@Service
+public class TimerService {
+
+
+    private long timerDuration = 120000; // 120000 milliseconds = 2 minutes
+
+    private long serverStartTime = 0;
+
+    @Autowired
+    private SpinIdRepository spinIdRepository;
+
+    @Autowired
+    private ResultRepository resultRepository;
+
+    public TimerResponse startOrResetTimer() {
+        long currentTime = Instant.now().toEpochMilli();
+
+        // Calculate the time elapsed since the last spin ID generation
+        long timeElapsed = currentTime - serverStartTime;
+
+        // Check if at least 2 minutes have passed since the last spin ID generation
+        if (serverStartTime == 0 || timeElapsed >= timerDuration) {
+            // If the timer is not started or has expired, set the server start time
+            serverStartTime = currentTime;
+
+            // Generate a new spin ID
+            String spinIdValue = generateSpinId();
+
+            // Save the spin ID to the database without a specific result
+            saveResultToDatabase(spinIdValue, null);
+
+            return new TimerResponse(spinIdValue, serverStartTime, timerDuration);
+        }
+
+        // If less than 2 minutes have passed, reuse the existing spin ID
+        SpinId existingSpinId = spinIdRepository.findFirstByCreationTimeAfterOrderByCreationTimeDesc(
+                LocalDateTime.now().minus(Duration.ofMillis(timerDuration)));
+
+        if (existingSpinId != null) {
+            return new TimerResponse(existingSpinId.getSpinId(), serverStartTime, timerDuration);
+        }
+
+        // If no valid spin ID is found, generate a new one
+        String spinIdValue = generateSpinId();
+
+        // Save the spin ID to the database without a specific result
+        saveResultToDatabase(spinIdValue, null);
+
+        return new TimerResponse(spinIdValue, serverStartTime, timerDuration);
+    }
+
+    public TimerResponse getTimerStatus() {
+        // Get the current time in milliseconds using Instant.now()
+        long currentTime = Instant.now().toEpochMilli();
+
+        // Calculate the remaining time by subtracting the time elapsed since server start
+        long remainingTime = timerDuration - (currentTime - serverStartTime);
+
+        // Create and return a TimerResponse object with relevant information
+        return new TimerResponse(null, serverStartTime, remainingTime);
+    }
+
+    public TimerResponse startOrResetTimerWithResult(String result) {
+        // Call the existing startOrResetTimer method to get the spin ID and timer information
+        TimerResponse timerResponse = startOrResetTimer();
+
+        // Save the result along with the generated spin ID to the database
+        saveResultToDatabase(timerResponse.getSpinId(), result);
+
+        // Return the TimerResponse with the spin ID and timer information
+        return timerResponse;
+    }
+
+    private void saveResultToDatabase(String spinId, String result) {
+        // Save the spin ID and result to the database
+        SpinId spinIdEntity = new SpinId();
+        spinIdEntity.setSpinId(spinId);
+        spinIdEntity.setCreationTime(LocalDateTime.now());
+        spinIdRepository.save(spinIdEntity);
+
+        // Save the result with the associated SpinId to the Result table
+        Result resultEntity = new Result();
+        resultEntity.setResult(result);
+        resultEntity.setSpinId(spinIdEntity);
+        resultRepository.save(resultEntity);
+    }
+
+    private String generateSpinId() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss");
+        return now.format(formatter);
+    }
+	
+	
+	
+}
+
+
+

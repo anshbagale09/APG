@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Prediction Game</title>
+  <!-- Add Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+   #left-sidebar, #center-content, #right-sidebar {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #left-sidebar {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #left-sidebar button {
+            margin-bottom: 10px;
+        }
+
+  </style>
+</head>
+<body>
+<!--
+<div class="container-fluid bg-dark text-white p-1">
+  <h1 class="text-center">Animal Prediction Game</h1>
+  <p class="text-center">Welcome to our website!</p>   
+</div>
+-->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: grey;">
+   <div class="col-md-2 mb-1">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center;">Total Balance</h5>
+          <!--
+          <p class="card-text">This is some text for Card 6.</p>
+          -->
+        </div>
+      </div>
+    </div>&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp
+    
+    <h3 class="text-center" style="margin-bottom: 3rem;">This Game Is Only For Entertainment</h3>
+    </div>
+ <div class="col-md-2 mb-1 ml-auto">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title" style="text-align: center;">Winning Points</h5>
+      <!--
+      <p class="card-text">This is some text for Card 6.</p>
+      -->
+    </div>
+  </div>
+</div>
+</nav>
+<div style="background-color: pink;">
+ <div id="left-sidebar">
+            
+           
+        </div>
+<div class="container mt-4">  
+  <div class="row">
+  <button>Button 1</button>
+            <button>Button 2</button>
+    <!-- Card 1 -->
+    <div class="col-md-2 mb-4">
+      <div class="card" style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 1</h5>
+          <p class="card-text">This is some text for Card 1.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat the above code for the remaining 5 cards -->
+
+    <!-- Card 2 -->
+    <div class="col-md-2 mb-4">
+      <div class="card" style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 2</h5>
+          <p class="card-text">This is some text for Card 2.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-2 mb-4">
+      <div class="card" style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 3</h5>
+          <p class="card-text">This is some text for Card 3.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat the above code for the remaining 3 cards -->
+
+    <!-- Card 4 -->
+    <div class="col-md-2 mb-4">
+      <div class="card"style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 4</h5>
+          <p class="card-text">This is some text for Card 4.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="col-md-2 mb-4">
+      <div class="card" style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 5</h5>
+          <p class="card-text">This is some text for Card 5.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="col-md-2 mb-4">
+      <div class="card" style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 6</h5>
+          <p class="card-text">This is some text for Card 6.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat the above code for the second row (cards 7 to 12) -->
+        <!-- Card 1 -->
+    <div class="col-md-2 mb-4">
+      <div class="card" style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 1</h5>
+          <p class="card-text">This is some text for Card 1.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat the above code for the remaining 5 cards -->
+
+    <!-- Card 2 -->
+    <div class="col-md-2 mb-4">
+      <div class="card" style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 2</h5>
+          <p class="card-text">This is some text for Card 2.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-2 mb-4">
+      <div class="card" style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 3</h5>
+          <p class="card-text">This is some text for Card 3.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat the above code for the remaining 3 cards -->
+
+    <!-- Card 4 -->
+    <div class="col-md-2 mb-4">
+      <div class="card" style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 4</h5>
+          <p class="card-text">This is some text for Card 4.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="col-md-2 mb-4">
+      <div class="card" style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 5</h5>
+          <p class="card-text">This is some text for Card 5.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="col-md-2 mb-4">
+      <div class="card" style="border-radius: 20%; width: 150px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">Card 6</h5>
+          <p class="card-text">This is some text for Card 6.</p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: grey;">
+   <div class="col-md-2 mb-1">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center;">Played Points</h5>
+          <!--
+          <p class="card-text">This is some text for Card 6.</p>
+          -->
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-outline-warning"  style="margin-top: 2.5rem;">Cancel All Bit</button> &nbsp&nbsp
+    <button type="button" class="btn btn-outline-warning"  style="margin-top: 2.5rem;">Cancel Previous Bit</button>&nbsp&nbsp
+    <button type="button" class="btn btn-outline-warning"  style="margin-top: 2.5rem;">Upper Line</button>&nbsp&nbsp
+    <button type="button" class="btn btn-outline-warning"  style="margin-top: 2.5rem;">Lower Line</button>&nbsp&nbsp
+    <button type="button" class="btn btn-outline-warning"  style="margin-top: 2.5rem;">Even Numbers</button>&nbsp&nbsp
+    <button type="button" class="btn btn-outline-warning"  style="margin-top: 2.5rem;">Odd Numbers</button>&nbsp&nbsp
+    <button type="button" class="btn btn-outline-warning"  style="margin-top: 2.5rem;">Logout</button>&nbsp&nbsp
+    </div>
+ <div class="col-md-2 mb-1 ml-auto">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title" style="text-align: center;">Time</h5>
+      <!--
+      <p class="card-text">This is some text for Card 6.</p>
+      -->
+    </div>
+  </div>
+</div>
+
+</nav>
+<!-- Add Bootstrap JS and Popper.js scripts (required for some Bootstrap components) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+        }
+
+        #container {
+            display: flex;
+            flex: 1;
+        }
+
+        #left-sidebar, #center-content, #right-sidebar {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #left-sidebar {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #left-sidebar button {
+            margin-bottom: 10px;
+        }
+
+        #center-content {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .cards {
+            width: calc(33.33% - 20px);
+            margin: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        #right-sidebar {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #right-sidebar button {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="left-sidebar">
+            <button>Button 1</button>
+            <button>Button 2</button>
+            <button>Button 3</button>
+            <button>Button 4</button>
+        </div>
+        <div id="center-content">
+           
+            <div class="cards">Card 1</div>
+            <div class="cards">Card 2</div>
+            <div class="cards">Card 3</div>
+            <div class="cards">Card 4</div>
+            <div class="cards">Card 5</div>
+            <div class="cards">Card 6</div>
+            <div class="cards">Card 7</div>
+            <div class="cards">Card 8</div>
+            <div class="cards">Card 9</div>
+            <div class="cards">Card 10</div>
+            <div class="cards">Card 11</div>
+            <div class="cards">Card 12</div>
+        </div>
+        <div id="right-sidebar">
+            <button>Button A</button>
+            <button>Button B</button>
+            <button>Button C</button>
+            <button>Button D</button>
+        </div>
+    </div>
+</body>
+</html>
+
+-->
+
+
+
+
+
+

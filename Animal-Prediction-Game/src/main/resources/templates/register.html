@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+	<title>
+		Animal Prediction Game
+	</title>
+	<!-- Fonts and icons -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<!-- Nucleo Icons -->
+	<link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+	<link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+	<!-- Font Awesome Icons -->
+	<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+	<link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+	<!-- CSS Files -->
+	<link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+	<style>
+		/* Add some style for error messages */
+		.error-message {
+			color: red;
+			font-size: 14px;
+			margin-top: 5px;
+		}
+	</style>
+</head>
+
+<!-- ... (your head section remains unchanged) ... -->
+
+<body>
+
+	<main class="main-content mt-0">
+		<section>
+			<div class="page-header min-vh-75">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+							<div class="card card-plain mt-8">
+								<div class="card-header pb-0 text-left bg-transparent">
+									<h3 class="font-weight-bolder text-info text-gradient">User Registration</h3>
+								</div>
+								<div class="card-body">
+									<form id="registrationForm" role="form">
+										<!-- ... (your input fields remain unchanged) ... -->
+										<label>Name</label>
+										<div class="mb-3">
+											<input type="text" class="form-control" placeholder="Name" id="name"
+												aria-label="Name" aria-describedby="name-addon" pattern="[A-Za-z\s]+"
+												title="Please enter a valid name" required>
+										</div>
+										<label>Email</label>
+										<div class="mb-3">
+											<input type="email" class="form-control" placeholder="Email" id="email"
+												aria-label="Email" aria-describedby="email-addon" required>
+										</div>
+										<label>Mobile No</label>
+										<div class="mb-3">
+											<input type="tel" class="form-control" placeholder="Mobile No" id="mobileno"
+												aria-label="Mobile No" aria-describedby="mobile-addon"
+												pattern="[0-9]{10}" title="Please enter a 10-digit mobile number"
+												required>
+										</div>
+										<label>Password</label>
+										<div class="mb-3">
+											<div class="input-group">
+												<input type="password" class="form-control" placeholder="Password"
+													aria-label="Password" aria-describedby="password-addon"
+													id="password-input" required>
+												<span class="input-group-text" id="toggle-password">
+													<i class="fa fa-eye" aria-hidden="true"></i>
+												</span>
+											</div>
+											<div class="error-message" id="password-error"></div>
+										</div>
+										<label>Confirm Password</label>
+										<div class="mb-3">
+											<!-- Add the id attribute -->
+											<input type="password" class="form-control" placeholder="Confirm Password"
+												aria-label="Confirm Password" aria-describedby="confirm-password-addon"
+												id="confirm-password" required>
+											<div class="error-message" id="confirm-password-error"></div>
+										</div>
+										<div class="text-center">
+											<button type="button" onclick="submitForm()"
+												class="btn bg-gradient-info w-100 mt-4 mb-0">Register</button>
+										</div>
+									</form>
+									<div class="text-center mt-3">
+										<a href="/login" class="text-info">Have an account? Login
+											Now</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<!-- Core JS Files -->
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+		integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+		crossorigin="anonymous"></script>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+	<!-- ... -->
+	<script>
+
+		document.getElementById('toggle-password').addEventListener('click', function () {
+			var passwordInput = document.getElementById('password-input');
+			var type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+			passwordInput.setAttribute('type', type);
+			this.querySelector('i').classList.toggle('fa-eye-slash');
+		});
+
+		// Add an onchange event to the password field
+		document.getElementById('password-input').addEventListener('change', function () {
+			validatePassword();
+		});
+
+		// Add an onchange event to the confirm password field
+		document.getElementById('confirm-password').addEventListener('change', function () {
+			validateConfirmPassword();
+		});
+
+
+		function validateForm() {
+			return validatePassword() && validateConfirmPassword();
+		}
+
+		function validatePassword() {
+			var password = document.getElementById('password-input').value;
+
+			// Check for a minimum length
+			if (password.length < 8) {
+				document.getElementById('password-error').innerHTML = 'Password must be at least 8 characters';
+				return false;
+			}
+
+			// Check for at least one uppercase letter
+			if (!/[A-Z]/.test(password)) {
+				document.getElementById('password-error').innerHTML = 'Password must contain at least one uppercase letter';
+				return false;
+			}
+
+			// Check for at least one lowercase letter
+			if (!/[a-z]/.test(password)) {
+				document.getElementById('password-error').innerHTML = 'Password must contain at least one lowercase letter';
+				return false;
+			}
+
+			// Check for at least one special character
+			if (!/[^A-Za-z]/.test(password)) {
+				document.getElementById('password-error').innerHTML = 'Password must contain at least one special character';
+				return false;
+			}
+			if (!/[0-9]/.test(password)) {
+				document.getElementById('password-error').innerHTML = 'Password must contain at least one number';
+				return false;
+			}
+
+			// If all checks pass, clear the error message
+			document.getElementById('password-error').innerHTML = '';
+			return true;
+		}
+
+		function validateConfirmPassword() {
+			var password = document.getElementById('password-input').value;
+			var confirmPassword = document.getElementById('confirm-password').value;
+
+			if (password !== confirmPassword) {
+				document.getElementById('confirm-password-error').innerHTML = 'Passwords do not match';
+				return false;
+			} else {
+				document.getElementById('confirm-password-error').innerHTML = '';
+				return true;
+			}
+		}
+
+
+
+		function submitForm() {
+			if (validateForm()) {
+
+				const name = document.getElementById('name').value;
+				const email = document.getElementById('email').value;
+				const mobileno = document.getElementById('mobileno').value;
+				const password = document.getElementById('password-input').value;
+
+				var User = {
+					name: name,
+					email: email,
+					mobileno: mobileno,
+					password: password
+				}
+
+				$.ajax({
+					type: 'POST',
+					url: '/userRegistration',
+					contentType: 'application/json', // Add this line to set the content type
+					data: JSON.stringify(User), // Convert the data to JSON
+					success: function (response) {
+						// Handle the success response
+						console.log(response);
+						alert('Registration successful! login Now');
+						clearForm();
+					},
+					error: function (error) {
+						// Handle the error response
+						console.error(error);
+						alert('Registration failed. Please try again.');
+					}
+				});
+
+			} else {
+				alert('Form validation failed. Please check the errors.');
+			}
+		}
+
+  function clearForm() {
+    // Reset all form fields
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('mobileno').value = '';
+    document.getElementById('password-input').value = '';
+    document.getElementById('confirm-password').value = '';
+}
+	</script>
+	<!-- ... -->
+
+</body>
+
+</html>
